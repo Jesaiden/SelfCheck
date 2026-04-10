@@ -1,0 +1,25 @@
+{
+  "project_name": "训练计划小程序",
+  "project_type": "weapp",
+  "stage": "pre-release-self-check",
+  "mode": "static",
+  "total_status": "BLOCKED",
+  "p0_total": 4,
+  "p0_pass": 2,
+  "p0_fail": 0,
+  "p0_blocked": 1,
+  "p0_needs_human_check": 1,
+  "main_flow_status": "PARTIAL",
+  "key_risks": [
+    "中断恢复缺少真实证据",
+    "删除计划后历史保留缺少验证"
+  ],
+  "must_retest": [
+    "删除计划后查看历史",
+    "训练中断恢复"
+  ],
+  "manual_checks": [
+    "真机输入手感",
+    "滚动体验"
+  ]
+}

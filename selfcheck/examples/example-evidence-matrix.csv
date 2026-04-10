@@ -1,0 +1,5 @@
+case_id,module,priority,verification_target,verification_method,evidence_level,evidence_type,evidence_path,status,risk,next_action
+TC-001,首页与新用户引导,P0,首次进入可创建/导入计划,运行验证 + 截图,A,screenshot+log,./screenshots/home.png,PASS,,保留
+TC-018,计划创建与导入,P0,自定义计划可保存,运行验证 + 日志,A,log,./logs/create-plan.log,PASS,,保留
+TC-054,训练进行中,P0,中断后可恢复,静态检查,C,code_only,,NEEDS_HUMAN_CHECK,缺少真机恢复证据,补真机
+TC-071,历史记录,P0,删除计划后历史仍可追溯,未执行,C,none,,BLOCKED,缺少执行证据,补删除回归验证

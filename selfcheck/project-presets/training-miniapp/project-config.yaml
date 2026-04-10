@@ -1,0 +1,65 @@
+project:
+  name: 训练计划小程序
+  type: weapp
+  stage: pre-release-self-check
+  description: >
+    一个训练计划记录小程序，支持自定义计划、本地计划导入、动作库与自定义动作、
+    训练中加组减组跳过、历史记录追溯、e1RM 与推荐重量计算，以及本地存储。
+
+inputs:
+  prd_paths:
+    - docs/PRD.md
+  test_case_paths:
+    - qa/训练计划小程序_正式测试用例_v1.xlsx
+  repo_root: .
+  evidence_paths:
+    - reports/
+    - screenshots/
+    - logs/
+
+runtime:
+  can_execute: true
+  build_commands:
+    - npm install
+    - npm run build
+  test_commands:
+    - npm run test
+    - npm run test:e2e
+  start_commands:
+    - npm run dev
+  device_or_emulator_available: false
+  network_required: false
+
+quality_gate:
+  require_all_p0_pass: true
+  fail_on_main_flow_break: true
+  allow_needs_human_check_for_visual_items: true
+  allow_static_only_mode: true
+
+templates:
+  selected: template-weapp.md
+
+custom_modules:
+  - 首页与新用户引导
+  - 计划创建与导入
+  - 动作库与自定义动作
+  - 训练进行中
+  - 历史记录
+  - 我的模块
+  - e1RM与推荐重量
+  - 本地存储与数据持久化
+  - 异常输入与边界场景
+  - 用户体验与交互
+
+main_flows:
+  - 新用户进入 -> 创建/导入计划 -> 开始训练 -> 保存 -> 历史查看
+  - 使用本地计划 -> 替换动作 -> 执行训练 -> 历史回显正确
+  - 训练中断 -> 退出重进 -> 恢复训练 -> 完成保存
+  - 删除计划 -> 历史记录仍可追溯
+  - 保存个人数据/PR -> 推荐重量计算 -> 历史不被篡改
+
+manual_check_required:
+  - 真机输入体验
+  - 长列表滚动体验
+  - 页面切后台再回前台的细节表现
+  - 深浅色/不同机型视觉表现

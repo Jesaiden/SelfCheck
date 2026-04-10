@@ -1,0 +1,86 @@
+project:
+  name: your-project-name
+  type: weapp   # weapp | mobile_app | web_app | multi_platform | custom
+  stage: pre-release-self-check   # dev-self-check | pre-qa | pre-release-self-check | regression
+  description: >
+    在这里用 2-5 句话描述项目做什么、关键主流程是什么、风险点是什么。
+
+inputs:
+  prd_paths:
+    - docs/PRD.md
+  test_case_paths:
+    - qa/test-cases.xlsx
+  repo_root: .
+  evidence_paths:
+    - reports/
+    - screenshots/
+    - logs/
+  optional_paths:
+    - docs/ARCHITECTURE.md
+    - docs/ROUTES.md
+    - docs/KNOWN_ISSUES.md
+
+runtime:
+  can_execute: true
+  build_commands:
+    - npm install
+    - npm run build
+  test_commands:
+    - npm run test
+    - npm run test:e2e
+  start_commands:
+    - npm run dev
+  device_or_emulator_available: false
+  network_required: false
+  external_dependencies:
+    - none
+
+quality_gate:
+  require_all_p0_pass: true
+  fail_on_main_flow_break: true
+  allow_needs_human_check_for_visual_items: true
+  allow_static_only_mode: true
+
+priority_rules:
+  p0_keywords:
+    - 新用户
+    - 主流程
+    - 保存
+    - 删除
+    - 覆盖
+    - 提交
+    - 历史
+    - 登录
+    - 恢复
+    - 权限
+  p1_keywords:
+    - 筛选
+    - 搜索
+    - 编辑
+    - 设置
+  p2_keywords:
+    - 文案
+    - 视觉
+    - 提示优化
+
+templates:
+  selected: template-weapp.md
+
+custom_modules:
+  - 模块A
+  - 模块B
+  - 模块C
+
+main_flows:
+  - 首次进入 -> 创建/导入 -> 完成一次关键操作 -> 查看结果
+  - 中断后恢复 -> 继续完成 -> 数据回显正确
+
+manual_check_required:
+  - 视觉体验
+  - 真机兼容性
+  - 微交互手感
+
+deliverables:
+  require_markdown_report: true
+  require_case_matrix_csv: true
+  require_summary_json: true
